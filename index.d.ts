@@ -1,4 +1,4 @@
-/**
+/*
 * @license Apache-2.0
 *
 * Copyright (c) 2026 The Stdlib Authors.
@@ -16,25 +16,34 @@
 * limitations under the License.
 */
 
-'use strict';
+// TypeScript Version: 4.1
+
+/// <reference types="https://cdn.jsdelivr.net/gh/stdlib-js/types@esm/index.d.ts"/>
 
 /**
-* Compute a mid-range incrementally, ignoring `NaN` values.
+* If provided a value, returns an updated mid-range; otherwise, returns the current mid-range.
 *
-* @module @stdlib/stats-incr-nanmidrange
+* ## Notes
+*
+* -   The mid-range is the arithmetic mean of maximum and minimum values. Accordingly, the mid-range is the midpoint of the range and a measure of central tendency.
+*
+* @param x - value
+* @returns mid-range
+*/
+type accumulator = ( x?: number ) => number | null;
+
+/**
+* Returns an accumulator function which incrementally computes a mid-range, ignoring `NaN` values.
+*
+* @returns accumulator function
 *
 * @example
-* var incrnanmidrange = require( '@stdlib/stats-incr-nanmidrange' );
-*
 * var accumulator = incrnanmidrange();
 *
 * var midrange = accumulator();
 * // returns null
 *
 * midrange = accumulator( 3.14 );
-* // returns 3.14
-*
-* midrange = accumulator( NaN );
 * // returns 3.14
 *
 * midrange = accumulator( -5.0 );
@@ -46,12 +55,9 @@
 * midrange = accumulator();
 * // returns 2.55
 */
-
-// MODULES //
-
-var main = require( './main.js' );
+declare function incrnanmidrange(): accumulator;
 
 
 // EXPORTS //
 
-module.exports = main;
+export = incrnanmidrange;
